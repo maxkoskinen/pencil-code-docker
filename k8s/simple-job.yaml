@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pencil-sim-simple
+  namespace: pencil
+  labels:
+    app: pencil-code
+    component: simulation
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: pencil-code
+        component: simulation
+    spec:
+      restartPolicy: Never
+
+      containers:
+        - name: pencil-sim
+          image: ghcr.io/maxkoskinen/pencil-code-docker:latest
+          imagePullPolicy: Always
+
+          args: ["conv-slab"]
+          resources:
+            requests:
+              cpu: "2"
+              memory: 4Gi
+            limits:
+              cpu: "4"
+              memory: 8Gi
+          securityContext:
+            capabilities:
+              add:
+                - SYS_PTRACE
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
+            - name: sim-output
+              mountPath: /simulation/data
+
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: sim-output
+          persistentVolumeClaim:
+            claimName: pencil-output

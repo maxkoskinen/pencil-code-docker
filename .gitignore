@@ -1,0 +1,14 @@
+# Pencil Code source (cloned during docker build, not committed)
+pencil-code/
+
+# Simulation output
+output/
+data/
+*/data/
+mysim/
+
+# Docker
+.docker/
+
+.DS_Store
+Thumbs.db

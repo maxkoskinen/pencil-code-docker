@@ -1,0 +1,1 @@
+/opt/pencil-code/bin/getconf.csh

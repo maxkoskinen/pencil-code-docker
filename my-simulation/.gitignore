@@ -1,0 +1,9 @@
+data/
+COMPLETED
+src/*
+!src/Makefile.local
+!src/cparam.local
+pc/
+fig/
+pc_commands.log
+*.tmp
