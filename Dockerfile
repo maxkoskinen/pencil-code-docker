@@ -21,7 +21,7 @@ FROM ubuntu:24.04 AS base-cpu
 FROM nvidia/cuda:12.6.0-devel-ubuntu24.04 AS base-gpu
 FROM base-${VARIANT} AS final
 
-LABEL maintainer="your-team@example.com"
+LABEL maintainer="max.koskinen@aalto.fi"
 LABEL description="Pencil Code — self-contained MHD simulation environment"
 LABEL variant="${VARIANT}"
 
